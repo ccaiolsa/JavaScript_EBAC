@@ -1,28 +1,39 @@
-// Calcule o MDC (máximo divisor comum) entre dois números.
+const mdc = (num1, num2) => {
 
-let num1 = parseInt(prompt("Digite o primeiro número: "));
-let num2 = parseInt(prompt("Digite o segundo número: "));
+let resultado;
 
-if(num1 > num2){
-    for(let i = num1; i > 0; i--){
-        if(num1 % i == 0 && num2 % i == 0){
-            console.log(`O máximo divisor comum entre ${num1} e ${num2} é ${i}`);
-            break;
+// Validações
+ if (num1 == num2) {
+        resultado = (`${num1} e ${num2} são divisíveis entre si.`);
+        return resultado;
     }
-}}
-else if(num1 < num2){
-    for(let i = num2; i > 0; i--){
-        if(num1 % i == 0 && num2 % i == 0){
-            console.log(`O máximo divisor comum entre ${num1} e ${num2} é ${i}`);
-            break;
+    else if (num1 <= 0 || num2 <= 0) {
+        resultado = "Digite números maiores que zero."
+        return resultado;
     }
-}}
-else if( num1 == num2){
-    console.log(`${num1} e ${num2} são divisíveis entre si.`);
-} 
-else if(num1 <= 0 || num2 <= 0){
-    console.log("Digite números maiores que zero.");
+    else if (typeof num1 !== "number" || typeof num2 !== "number") {
+        resultado = "Digite um valor válido"
+        return resultado;
+    }
+
+    // Cálculo em si
+    else if (num1 > num2) {
+        for (let i = num1; i > 0; i--) {
+            if (num1 % i == 0 && num2 % i == 0) {
+                resultado = (`O máximo divisor comum entre ${num1} e ${num2} é ${i}`);
+                return resultado;
+                break;
+            }
+        }
+    }
+    else if (num1 < num2) {
+        for (let i = num2; i > 0; i--) {
+            if (num1 % i == 0 && num2 % i == 0) {
+                resultado = (`O máximo divisor comum entre ${num1} e ${num2} é ${i}`);
+                return resultado;
+                break;
+            }
+        }
+    }
 }
-else{
-    console.log("Digite um valor válido");
-}
+module.exports = { mdc };
